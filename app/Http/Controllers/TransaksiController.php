@@ -8,6 +8,7 @@ use App\Models\user;
 use App\Models\travel_package;
 use App\Models\transaksi;
 use Validator;
+use Illuminate\Support\Facades\Auth;
 
 class TransaksiController extends Controller
 {
@@ -18,8 +19,15 @@ class TransaksiController extends Controller
      */
     public function index()
     {
-        $transaksis = transaksi::with(['travel_package'])->paginate(5);
-        return view('transaksi.index',compact('transaksis'));
+        if(Auth::user()->level == 1){
+            // transaksi::with(['travel_package'])->join('carts', 'carts.layananid', '=', 'layanans.id')->where('user_id', Auth::user()->id)->paginate(5);
+            $transaksis = travel_package::join('transaksis', 'transaksis.travel_package_id', '=', 'travel_packages.id')->where('user_id', Auth::user()->id)->paginate(5);
+            return view('halamanuser.transaksi.index',compact('transaksis'));
+        }else{
+            $transaksis = transaksi::with(['travel_package'])->paginate(5);
+            return view('transaksi.index',compact('transaksis'));
+        }
+
 
     }//end method
 
@@ -85,7 +93,12 @@ class TransaksiController extends Controller
         // }
     //    transaksi::create($validatedData);
         //toast('berhasil di tambah', 'success');
-        return redirect()->route('transaksi.index');
+        if (Auth::user()->level == 2) {
+            return redirect()->route('transaksi.index');
+        }else{
+            return redirect()->route('transaksiuser');
+        }
+
     }
 
     /**
@@ -108,8 +121,10 @@ class TransaksiController extends Controller
      */
     public function edit($id)
     {
-        $transaksi = transaksi::findOrFail($id);
-        return view('transaksi.edit',compact('transaksi'));
+        $users = User::all();
+        $travel = travel_package::all();
+        $transaksi = Transaksi::findOrFail($id);
+        return view('transaksi.edit',compact('transaksi', 'users', 'travel'));
     }
 
     /**
@@ -121,13 +136,13 @@ class TransaksiController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $transaksi = transaksi::find($id);
+        $model = transaksi::find($id);
         $data = $request->all();
-        // $model->travel_package_id = $request->travel_package_id;
-        // $model->user_id = $request->user_id;
-        // $model->addtional_visa = $request->addtional_visa;
-        // $model->transaksi_total= $request->transaksi_total;
-        // $model->status = $request->status;
+            $model->travel_package_id = $request->travel_package_id;
+            $model->user_id = $request->user_id;
+            $model->addtional_visa = $request->addtional_visa;
+            $model->total_transaksi= $request->total_transaksi;
+            $model->status_transaksi = $request->status_transaksi;
         $validasi = Validator::make($data,[
             'travel_package_id'=>'required|max:255',
             'user_id'=>'required|max:255',
@@ -141,7 +156,7 @@ class TransaksiController extends Controller
         {
             return redirect()->route('transaksi.edit',[$id])->withErrors($validasi);
         }
-          $transaksi->save();
+        $model->save();
           return redirect()->route('transaksi.index');
     }
 
@@ -156,5 +171,33 @@ class TransaksiController extends Controller
         $data = transaksi::findOrFail($id);
         $data->delete();
         return redirect()->route('transaksi.index');
+    }
+    public function tambah($id)
+    {
+        $user = User::get();
+        $transaksi = transaksi::get();
+        $travel = travel_package::get();
+        return view('halamanuser.transaksi.create', compact('user','transaksi','travel'));
+    }
+    public function tambah2(Request $request , $id)
+    {
+         $data = $request->all();
+        $model = new transaksi;
+        $model->travel_package_id = $request->travel_package_id;
+        $model->user_id = $id;
+        $model->addtional_visa = $request->addtional_visa;
+        $model->total_transaksi= $request->total_transaksi * $request->qty ;
+        $model->status_transaksi = $request->status_transaksi;
+        $model->qty = $request->qty;
+
+
+        $model->save();
+
+        if (Auth::user()->level == 2) {
+            return redirect()->route('transaksi.index');
+        }else{
+            return redirect()->route('transaksiuser');
+        }
+
     }
 }

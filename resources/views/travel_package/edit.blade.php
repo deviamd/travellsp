@@ -19,10 +19,14 @@ Travel Packages
                                         <form class="custom-validation" method="POST" action="{{ route('travel_package.update',[$travel_package->id]) }}" novalidate="">
                                             @csrf
                                             {{ method_field('PUT') }}
-                                           
+
                                             <div class="mb-3">
                                                 <label>Title</label>
                                                 <input type="text" name="title" class="form-control" required="" value="{{ $travel_package->title }}">
+                                            </div>
+                                            <div class="mb-3">
+                                                <label>Slug</label>
+                                                <input type="text" name="slug" class="form-control" required="" value="{{ $travel_package->slug }}">
                                             </div>
                                             <div class="mb-3">
                                                 <label>Location</label>

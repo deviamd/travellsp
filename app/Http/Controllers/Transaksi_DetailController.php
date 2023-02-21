@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\transaksi;
 use App\Models\transaksi_detail;
 use Validator;
+use Illuminate\Support\Facades\Auth;
 
 class Transaksi_DetailController extends Controller
 {
@@ -17,10 +18,18 @@ class Transaksi_DetailController extends Controller
      */
     public function index()
     {
-        $transaksi_detail = Transaksi_Detail::paginate(5);
+        if(Auth::user()->level == 1){
+            $transaksi_detail = Transaksi_Detail::where('userid', Auth::user()->id)->paginate(5);
 
-        return view('transaksi_detail.index', [
-            'transaksi_detail' => Transaksi_Detail::all(), ]);
+        return view('halamanuser.transaksi_detail.index', [
+            'transaksi_detail' =>  $transaksi_detail, ]);
+        }else{
+            $transaksi_detail = Transaksi_Detail::paginate(5);
+
+            return view('transaksi_detail.index', [
+                'transaksi_detail' => Transaksi_Detail::all(), ]);
+        }
+
 
     }
 
@@ -31,8 +40,9 @@ class Transaksi_DetailController extends Controller
      */
     public function create()
     {
+        $transaksi = transaksi::get();
         $transaksi_detail = transaksi_detail::get();
-        return view('transaksi_detail.create', compact('transaksi_detail'));
+        return view('transaksi_detail.create', compact('transaksi'));
     }
 
     /**
@@ -46,12 +56,14 @@ class Transaksi_DetailController extends Controller
         $data = $request->all();
         $model = new transaksi_detail;
         $model->username = $request->username;
+        $model->transaksi_id = $request->transaksi_id;
         $model->nationality= $request->nationality;
         $model->is_visa = $request->is_visa;
         $model->doe_passport = $request->doe_passport;
 
         $validasi = Validator::make($data,[
             'username'=>'required|max:255',
+            'transaksi_id'=>'required|max:255',
             'nationality'=>'required|max:255',
             'is_visa'=>'required|max:255',
             'doe_passport'=>'required|max:255',
@@ -88,7 +100,7 @@ class Transaksi_DetailController extends Controller
     public function edit($id)
     {
         $transaksi = Transaksi::findOrFail($id);
-        return view('transaksi_detail.edit',compact('transaksi_detail', 'transaksi'));
+        return view('transaksi_detail.edit',compact('transaksi'));
     }
 
     /**
@@ -109,6 +121,7 @@ class Transaksi_DetailController extends Controller
 
         $validasi = Validator::make($data,[
             'username'=>'required|max:255',
+            'transaksi_id'=>'required|max:255',
             'nationality'=>'required|max:255',
             'is_visa'=>'required|max:255',
             'doe_passport'=>'required|max:255',

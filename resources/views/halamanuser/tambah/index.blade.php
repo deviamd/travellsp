@@ -2,8 +2,6 @@
 @section('title')
 Transaksi
 @endsection
-
-<!-- ini untuk isi home -->
 @section('content')
 <div  id="layoutSidenav_content">
     <main>

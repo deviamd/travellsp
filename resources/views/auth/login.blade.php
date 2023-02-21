@@ -26,14 +26,9 @@
 
     <nav class="navbar">
         <ul>
-            <li><a href="home.html">home</a></li>
-            <li><a href="products.html">tour</a></li>
-            <li><a href="#">pages +</a>
-                <ul>
-                    <li><a href="about.html">about</a></li>
-                </ul>
-            </li>
-            <li><a href="contact.html">contact</a></li>
+            <li><a href="/home">home</a></li>
+            <li><a href="#">tour</a></li>
+            <li><a href="#">contact</a></li>
             <li><a href="#">account +</a>
                 <ul>
                     <li><a href="{{ route('login') }}">login</a></li>
@@ -46,7 +41,7 @@
     <div class="icons">
         <div id="menu-btn" class="fas fa-bars"></div>
         <div id="search-btn" class="fas fa-search"></div>
-        <a href="cart.html" class="fas fa-shopping-cart"></a>
+
     </div>
 
     <form action="" class="search-form">
@@ -142,7 +137,7 @@
 
     </div>
 
-    <div class="credit"> created by <span>travel_lsp</span> | all rights reserved </div>
+    <div class="credit"> created by <span>Travel_LSP</span> | all rights reserved </div>
 
 </section>
 

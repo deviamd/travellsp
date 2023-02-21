@@ -40,6 +40,8 @@ class Travel_PackageController extends Controller
         $model->duration = $request->duration;
         $model->type = $request->type;
         $model->price = $request->price;
+        $model->qty = $request->qty;
+
 
         $model->save();
 
@@ -83,13 +85,14 @@ class Travel_PackageController extends Controller
         $model->slug = $request->slug;
         $model->location = $request->location;
         $model->about = $request->about;
-       
         $model->language = $request->language;
-        $model->food = $request->food;
+        $model->foods = $request->foods;
         $model->departure_date = $request->departure_date;
         $model->duration = $request->duration;
         $model->type = $request->type;
         $model->price = $request->price;
+        $model->save();
+
 
        return redirect()->route('travel_package.index');
     }

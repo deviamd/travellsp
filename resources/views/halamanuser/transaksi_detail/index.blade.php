@@ -21,8 +21,7 @@ Transaksi Detail
                     </div>
                         <!-- end page title -->
                     <div>
-                        <a class="btn btn-primary waves-effect waves-light mt-5 mb-4" href="{{ route('transaksi_detail.create')}}" role="button"> Create (+)</a>
-                        <a class="btn btn-danger waves-effect waves-light  mt-5 mb-4" href="/laporan" role="button"> laporan pdf</a>
+
                         <div class="row">
                         <div class="col-12">
                             <div class="card">

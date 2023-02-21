@@ -1,6 +1,6 @@
 @extends('layouts.home')
 @section('title')
-Transaksi Detail
+Transaksi
 @endsection
 
 <!-- ini untuk isi home -->
@@ -14,15 +14,15 @@ Transaksi Detail
                     <div class="row">
                         <div class="col-5">
                             <div class="page-title-box d-sm-flex align-items-center justify-content-between">
-                                <h4 class="mb-sm-0">Transaksi Detail</h4>
+                                <h4 class="mb-sm-0">Transaksi</h4>
                                 <div class="page-title-right">
+                                </div>
                             </div>
                         </div>
                     </div>
                         <!-- end page title -->
                     <div>
-                        <a class="btn btn-primary waves-effect waves-light mt-5 mb-4" href="{{ route('transaksi_detail.create')}}" role="button"> Create (+)</a>
-                        <a class="btn btn-danger waves-effect waves-light  mt-5 mb-4" href="/laporan" role="button"> laporan pdf</a>
+
                         <div class="row">
                         <div class="col-12">
                             <div class="card">
@@ -32,28 +32,34 @@ Transaksi Detail
                                         <table class="table">
                                             <thead>
                                                 <tr style="cursor: pointer;">
-                                                    <th>Id</th>
-                                                    <th>Transaksi Id</th>
-                                                    <th>Username</th>
-                                                    <th>Nationality</th>
-                                                    <th>Is visa</th>
-                                                    <th>Doe Passport</th>
+
+                                                    <th>Travel Packages Id</th>
+                                                    <th>Nama anda</th>
+                                                    <th>Addtional Visa</th>
+                                                    <th>Total Transaksi</th>
+                                                    <th>qty</th>
+                                                   
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                            @foreach($transaksi_detail as $row)
+                                            @foreach($transaksis as $row)
                                                 <tr>
 
                                                     <td>{{ $row->id }}</td>
-                                                    <td>{{ $row->transaksi_id }}</td>
-                                                    <td>{{ $row->username}}</td>
-                                                    <td>{{ $row->nationality}}</td>
-                                                    <td>{{ $row->is_visa}}</td>
-                                                    <td>{{ $row->doe_passport}}</td>
+
+                                                    <td>{{ Auth::user()->name}}</td>
+                                                    <td>{{ $row->addtional_visa}}</td>
+                                                    <td>{{ $row->total_transaksi}}</td>
+                                                    {{-- <td>{{ $row->status_transaksi}}</td> --}}
+                                                    <td>{{ $row->qty}}</td>
+                                                    <td>{{ $row->edit}}</td>
+
+
                                                 </tr>
                                             @endforeach
                                             </tbody>
                                         </table>
+
                                     </div>
                                 </div>
                             </div>

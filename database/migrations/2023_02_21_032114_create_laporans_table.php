@@ -13,12 +13,8 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('galeris', function (Blueprint $table) {
-            $table->id();
-            $table->unsignedBigInteger('travel_packages_id');
-            $table->text('image');
-
-            $table->foreign('travel_packages_id')->references('id')->on('travel_packages')->onDelete('cascade');
+        Schema::create('laporans', function (Blueprint $table) {
+            $table->bigIncrements('id');
             $table->timestamps();
         });
     }
@@ -30,6 +26,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('galeris');
+        Schema::dropIfExists('laporans');
     }
 };

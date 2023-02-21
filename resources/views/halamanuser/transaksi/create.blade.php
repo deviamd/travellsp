@@ -26,7 +26,7 @@ Transaksi
              </ul>
             </div>
             @endif
-            <div class="mb-3">
+            {{-- <div class="mb-3">
                 <label>Title</label>
                 <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
                 <div class="value">
@@ -37,8 +37,8 @@ Transaksi
                         @endforeach
                     </select>
                 </div>
-            </div>
-            <div class="mb-3">
+            </div> --}}
+            {{-- <div class="mb-3">
                 <label>Name</label>
                 <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
                 <div class="value">
@@ -49,16 +49,20 @@ Transaksi
                         @endforeach
                     </select>
                 </div>
-            </div>
+            </div> --}}
                             <div class="mb-3">
                               <label>Addtional Visa</label>
                              <input type="text" name="addtional_visa" class="form-control" required="" placeholder="Silahkan input Addtional Visa">
                           </div>
+                          <div class="mb-3">
+                            <label>Guantity</label>
+                           <input type="number" name="gty" class="form-control" required="" placeholder="Silahkan input Addtional Visa">
+                        </div>
                             <div class="mb-3">
                                 <label>Transaksi Total </label>
                                 <input type="text" name="total_transaksi" class="form-control" required="" placeholder="Silahkan input Transaksi Total">
                             </div>
-                             <div class="mb-3">
+                             {{-- <div class="mb-3">
                                 <div class="name">Status</div>
                                 <div class="value">
                                     <select name="status_transaksi" class="form-control">
@@ -67,7 +71,7 @@ Transaksi
                                         <option value="2">Belum</option>
                                     </select>
                                 </div>
-                            </div>
+                            </div> --}}
 
 
                                     </select>

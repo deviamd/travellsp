@@ -42,7 +42,7 @@
                                                         <th>Duration</th>
                                                         <th>Type</th>
                                                         <th>Price</th>
-
+                                                        <th>Qty</th>
                                                         <th>Edit</th>
                                                     </tr>
                                                 </thead>
@@ -58,7 +58,7 @@
                         <td>{{ $row->duration }}</td>
                         <td>{{ $row->type}}</td>
                         <td>{{ $row->price}}</td>
-
+                        <td>{{ $row->qty}}</td>
                         <td>
                         <form method="post" action="{{ route('travel_package.destroy',[$row->id]) }}" onsubmit="return confirm('Are you sure to delete, {{$row->name}}?')">
                                 @csrf

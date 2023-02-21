@@ -29,7 +29,12 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerate();
 
-        return redirect()->intended(RouteServiceProvider::HOME);
+        if (auth()->user()->level == 2) {
+
+            return redirect()->intended(RouteServiceProvider::ADMIN)->with('Berhasil login','halo selamat datang!');;
+        }
+
+        return redirect()->intended(RouteServiceProvider::HOME2)->with('Berhasil login','halo selamat datang!');
     }
 
     /**

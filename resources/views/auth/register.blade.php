@@ -23,18 +23,10 @@
 
 <header class="header">
 
-    <a href="home.html" class="logo"> Travel </a>
+    <a href="/home" class="logo"> Travel </a>
 
     <nav class="navbar">
         <ul>
-            <li><a href="home.html">home</a></li>
-            <li><a href="products.html">tour</a></li>
-            <li><a href="#">pages +</a>
-                <ul>
-                    <li><a href="about.html">about</a></li>
-                </ul>
-            </li>
-            <li><a href="contact.html">contact</a></li>
             <li><a href="#">account +</a>
                 <ul>
                     <li><a href="/login">login</a></li>
@@ -47,7 +39,6 @@
     <div class="icons">
         <div id="menu-btn" class="fas fa-bars"></div>
         <div id="search-btn" class="fas fa-search"></div>
-        <a href="cart.html" class="fas fa-shopping-cart"></a>
     </div>
 
     <form action="" class="search-form">

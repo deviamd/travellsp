@@ -16,9 +16,6 @@ Transaksi
                             <div class="page-title-box d-sm-flex align-items-center justify-content-between">
                                 <h4 class="mb-sm-0">Transaksi</h4>
                                 <div class="page-title-right">
-                                    <ol class="breadcrumb m-9">
-                                        <li class="breadcrumb-item"><a href="javascript: void(0);">Tables</a></li>
-                                    </ol>
                                 </div>
                             </div>
                         </div>
@@ -26,6 +23,7 @@ Transaksi
                         <!-- end page title -->
                     <div>
                         <a class="btn btn-primary waves-effect waves-light mt-5 mb-4" href="{{ route('transaksi.create')}}" role="button"> Create (+)</a>
+                        <a class="btn btn-danger waves-effect waves-light  mt-5 mb-4" href="/laporan/pdf" role="button"> laporan pdf</a>
                         <div class="row">
                         <div class="col-12">
                             <div class="card">
@@ -40,7 +38,7 @@ Transaksi
                                                     <th>User Id</th>
                                                     <th>Addtional Visa</th>
                                                     <th>Total Transaksi</th>
-                                                    <th>Status</th>
+                                                    <th>Status Transaksi</th>
                                                     <th>Edit</th>
                                                 </tr>
                                             </thead>

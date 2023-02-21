@@ -42,6 +42,10 @@ Travel Package
                                 <input type="text" name="location" class="form-control" required="" placeholder="Silahkan input location">
                             </div>
                             <div class="mb-3">
+                                <label>qty</label>
+                                <input type="text" name="qty" class="form-control" required="" placeholder="Silahkan input qty">
+                            </div>
+                            <div class="mb-3">
                                 <label>About</label>
                                 <input type="text" name="about" class="form-control" required="" placeholder="Silahkan input about">
                             </div>
